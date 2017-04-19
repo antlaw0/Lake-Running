@@ -2,7 +2,6 @@
   "name": "lakerunning",
   "version": "1.0.0",
   "description": "mongoose database",
-  "main": "index.js",
   "scripts": {
     "test": "test"
   },

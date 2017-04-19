@@ -15,13 +15,23 @@ var users = require('./routes/users');
 var hbshelpsers = require('./hbshelpers/helpers');
 
 var mongo_pw = process.env.MONGO_PW;
-//var url = 'mongodb://admin:' + mongo_pw + '@localhost:27017/birds?authSource=admin';
-var url = process.env.MONGO_URL;
+//var url = process.env.MONGO_URL;
+var url = 'mongodb://localhost:27017/lakes';
+
 mongoose.connect(url);
 
 var app = express();
+/*
+app.use(session({
+    secret: cookie_secret,
+    name: cookie_name,
+    store: sessionStore, // connect-mongo session store
+    proxy: true,
+    resave: true,
+    saveUninitialized: true
+}));
+*/
 
-app.use(session({secret:'top secret!'}));
 app.use(flash());
 
 // view engine setup

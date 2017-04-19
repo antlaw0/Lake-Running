@@ -6,13 +6,14 @@ var uniqueValidator = require('mongoose-unique-validator');
 var lakeSchema = new mongoose.Schema({
   name: { type: String, required: true, unique: true, uniqueCaseInsensitive: true },
   description: String,
-  times: {time: type: number, date: [ { type: Date, default: Date.now, validate: {
+  datesRun: [ {time: Number,  type: Date, default: Date.now, validate: {
     validator : function(date) {
     //return false if date is in the future
       return (date.getTime() < Date.now()) ; //time is less than now, in past
     }, message: '{VALUE} is not a valid sighting date. Date must be in the past'
   }} ],
-  
+  location: { location: String }
+});
 
 var Lake = mongoose.model('lake', lakeSchema);
 lakeSchema.plugin(uniqueValidator);
