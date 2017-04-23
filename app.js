@@ -5,9 +5,9 @@ var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var mongoose = require('mongoose');
-var flash = require('express-flash');
 var session = require('express-session');
 var hbs = require('express-handlebars');
+var flash = require('express-flash');
 
 var index = require('./routes/index');
 var users = require('./routes/users');
@@ -21,16 +21,12 @@ var url = 'mongodb://localhost:27017/lakes';
 mongoose.connect(url);
 
 var app = express();
-/*
+
 app.use(session({
-    secret: cookie_secret,
-    name: cookie_name,
-    store: sessionStore, // connect-mongo session store
-    proxy: true,
     resave: true,
     saveUninitialized: true
 }));
-*/
+
 
 app.use(flash());
 

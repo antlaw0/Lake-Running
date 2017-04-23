@@ -30,6 +30,7 @@
     "mongoose-unique-validator": "^1.0.5",
     "morgan": "^1.8.1",
     "serve-favicon": "^2.4.2",
+    "session": "^0.1.0",
     "sessions": "0.0.2-7"
   }
 }

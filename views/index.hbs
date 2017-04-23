@@ -1,8 +1,8 @@
-<h1>Bird Records</h1>
+<h1>Lake Records</h1>
 
-<div class="addNewLake">
+<div class="addNewRun">
 
-  <h3>Add new Lake</h3>
+  <h3>Add new lake</h3>
 
   <div class="messages">
     {{#each messages.error}}
@@ -17,20 +17,16 @@
 	
 	Description: <input name="description" type="text">
     <br>
-    New Time: <input name="time" type="number" >
+    
+    Date run: <input name="dateRun" type="datetime-local" required>
     <br>
-    
-    
-    
-    Date of Run: <input name="date" type="datetime-local" required>
-    <br>
-    <input name="addLake" type="submit" value="Add new lake">
+    <input name="addLake" type="submit" value="Add new run">
     <br>
   </form>
 
 </div>
 
-<div class="lakeRuns">
+<div class="lakesRun">
 
   <h3>All Runs</h3>
 
@@ -43,23 +39,23 @@
   <br>
     <p>Name: {{this.name}}</p>
     <p>Description: {{this.description}}</p>
-    <p>times: {{this.times}}</p>
-    <p>Dates of runs:</p>
+
+    <p>Dates run:</p>
     <ul>
-    {{#each this.dates}}
+    {{#each this.datesRun}}
       <li>
         {{dateFormatter this}}
       </li>
       <li>{{this}}</li>
     {{else}}
-      <li>No sightings reported</li>
+      <li>No runs reported</li>
     {{/each}}
     </ul>
 
-    <P>Add new date seen</P>
+    <P>Add new date run</P>
 
-    <form action="/addDate" method="POST">
-      <input name="dateSeen" type="datetime-local" required>
+    <form action="/addRun" method="POST">
+      <input name="dateRun" type="datetime-local" required>
       <input name="_id" type="hidden" value="{{this._id}}">
       <input name="name" type="hidden" value="{{this.name}}">
       <input name="add" type="submit" value="Add new date">
@@ -68,7 +64,7 @@
     <hr>
 
   {{else}}
-    <p>No bird records in the database</p>
+    <p>No run records in the database</p>
   {{/each}}
 </div>
 

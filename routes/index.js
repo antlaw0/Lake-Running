@@ -27,14 +27,16 @@ router.post('/', function(req, res, next){
     }
   }
 
+  
+
   // Extract the date, set to Date.now() if not present
-  var date = lakeData.dates || Date.now();
-  lakeData.datess = [ date ];  // A 1-element array
-  delete(lakeData.dates);   // remove dateSeen, don't need
+  var date = lakeData.dateRun || Date.now();
+  lakeData.datesRun = [ date ];  // A 1-element array
+  delete(lakeData.dateRun);   // remove dateRun , don't need
 
   console.log(lakeData);
 
-  var lake = Lake(lakeData);  //Create new lake  from req.body
+  var lake = Lake(lakeData);  //Create new Lake from req.body
 
   lake.save(function(err, newlake){
 
@@ -70,43 +72,43 @@ router.post('/deleteLake', function(req, res, next){
 	}//end of if no error
 	});//end of query database
 	
-	});//end of call to delete lake
+	});//end of call to delete bird
 
 
-router.post('/addDate', function(req, res, next){
+router.post('/addDateRun', function(req, res, next){
 
-  if (!req.body.dateSeen) {
-    req.flash('error', 'Please provide a date for your sighting of ' + req.body.name);
+  if (!req.body.dateRun) {
+    req.flash('error', 'Please provide a date for your run of ' + req.body.name);
     return res.redirect('/');
   }
 
-  // Find the bird with the given ID, and add this new date to the datesSeen array
-  Bird.findById( req.body._id, function(err, bird) {
+  // Find the lake  with the given ID, and add this new date to the datesRun array
+  Lake.findById( req.body._id, function(err, lake) {
 
     if (err) {
       return next(err);
     }
 
-    if (!bird) {
+    if (!lake) {
       res.statusCode = 404;
-      return next(new Error('Not found, bird with _id ' + req.body._id));
+      return next(new Error('Not found, lake with _id ' + req.body._id));
     }
 
-    console.log('date saved = ' + req.body.dateSeen);
+    console.log('run saved = ' + req.body.dateRun);
 
-    bird.datesSeen.push(req.body.dateSeen);  // Add new date to datesSeen array
+    lake.datesRun.push(req.body.dateRun);  // Add new date to datesRun array
 
-    console.log(bird.datesSeen)
+    console.log(lake.datesRun)
 
-    // And sort datesSeen
-    bird.datesSeen.sort(function(a, b) {
+    // And sort datesRun
+    lake.datesRun.sort(function(a, b) {
       if (a.getTime() < b.getTime()) { return 1;  }
       if (a.getTime() > b.getTime()) { return -1; }
       return 0;
     });
 
 
-    bird.save(function(err){
+    lake.save(function(err){
       if (err) {
         if (err.name == 'ValidationError') {
           //Loop over error messages and add the message to messages array
