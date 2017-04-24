@@ -13,11 +13,11 @@ var lakeSchema = new mongoose.Schema({
       return (date.getTime() < Date.now()) ; //time is less than now, in past
     }, message: '{VALUE} is not a valid run date. Date must be in the past'
 	}} ]
-  
+})      // end of mongoose.Schema declaration
 
 var Lake = mongoose.model('Lake', lakeSchema);
 lakeSchema.plugin(uniqueValidator);
 
-  
+
 
 module.exports = Lake;
