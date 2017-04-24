@@ -6,7 +6,7 @@ var uniqueValidator = require('mongoose-unique-validator');
 var lakeSchema = new mongoose.Schema({
   name: { type: String, required: true, unique: true, uniqueCaseInsensitive: true },
   description: String,
-  timesRun: {type: Number, min: 1, max: 50 },
+  timesRun: {type: Number },
   datesRun: [ { type: Date, default: Date.now, validate: {
     validator : function(date) {
     //return false if date is in the future

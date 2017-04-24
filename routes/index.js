@@ -31,6 +31,10 @@ router.post('/', function(req, res, next){
 
   // Extract the date, set to Date.now() if not present
   var date = lakeData.dateRun || Date.now();
+  var time = lakeData.timeRun;
+  
+  lakeData.timesRun = [ time;  // A 1-element array
+  
   lakeData.datesRun = [ date ];  // A 1-element array
   delete(lakeData.dateRun);   // remove dateRun , don't need
 

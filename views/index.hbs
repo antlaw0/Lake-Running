@@ -17,7 +17,9 @@
 	
 	Description: <input name="description" type="text">
     <br>
-    
+    Time run: <input name="timeRun" type="number" required>
+    <br>
+	
     Date run: <input name="dateRun" type="datetime-local" required>
     <br>
     <input name="addLake" type="submit" value="Add new run">
@@ -42,7 +44,9 @@
 
     <p>Dates run:</p>
     <ul>
-    {{#each this.datesRun}}
+    {{#each this.timesRun}}
+      :  
+	{{#each this.datesRun}}
       <li>
         {{dateFormatter this}}
       </li>

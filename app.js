@@ -23,7 +23,8 @@ mongoose.connect(url);
 var app = express();
 
 app.use(session({
-    resave: true,
+    secret: "xx57q9r133788898",
+	resave: true,
     saveUninitialized: true
 }));
 
