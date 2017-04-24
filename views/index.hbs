@@ -43,11 +43,16 @@
     <p>Description: {{this.description}}</p>
 
     <p>Dates run:</p>
-    <ul>
-    {{#each this.timesRun}}
-      :  
-	{{#each this.datesRun}}
-      <li>
+    
+	
+	
+	
+	<ul>
+    
+	{{#each this.timesRun}} 
+ {{#each this.datesRun}} {{/each}}
+
+	  <li>
         {{dateFormatter this}}
       </li>
       <li>{{this}}</li>
