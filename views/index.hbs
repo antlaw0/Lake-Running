@@ -12,14 +12,14 @@
 
   <form action="/" method="POST">
     Name: <input name="name" type="text" required>
-    
+
     <br>
-	
+
 	Description: <input name="description" type="text">
     <br>
     Time run: <input name="timeRun" type="number" required>
     <br>
-	
+
     Date run: <input name="dateRun" type="datetime-local" required>
     <br>
     <input name="addLake" type="submit" value="Add new run">
@@ -35,22 +35,23 @@
   {{# each lakes}}
   <form action="/deleteLake" method="POST">
       <input name="delete" type="submit" value="{{this._id}}">Delete</input>
-    
+
     </form>
-	
+
   <br>
     <p>Name: {{this.name}}</p>
     <p>Description: {{this.description}}</p>
 
     <p>Dates run:</p>
-    
-	
-	
-	
+
+
+
+
 	<ul>
-    
-	{{#each this.timesRun}} {{/each}} 
- {{#each this.datesRun}} {{/each}}
+
+	{{#each this.timesRun}} {{/each}}
+  <p>this</p>   <!-- you probably want something else here -->
+ {{#each this.datesRun}}
 
 	  <li>
         {{dateFormatter this}}
@@ -76,5 +77,3 @@
     <p>No run records in the database</p>
   {{/each}}
 </div>
-
-
