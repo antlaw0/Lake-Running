@@ -12,14 +12,14 @@
 
   <form action="/" method="POST">
     Name: <input name="name" type="text" required>
-    
+
     <br>
-	
+
 	Description: <input name="description" type="text">
     <br>
     Time run: <input name="timeRun" type="number" required>
     <br>
-	
+
     Date run: <input name="dateRun" type="datetime-local" required>
     <br>
     <input name="addLake" type="submit" value="Add new run">
@@ -35,38 +35,25 @@
   {{# each lakes}}
   <form action="/deleteLake" method="POST">
       <input name="delete" type="submit" value="{{this._id}}">Delete</input>
-    
+
     </form>
-	
+
   <br>
     <p>Name: {{this.name}}</p>
     <p>Description: {{this.description}}</p>
 
-    <p>Dates run:</p>
-    
-	
-	
-	
-	<ul>
-    
-	{{#each this.timesRun}} 
- {{#each this.datesRun}} {{/each}}
+    <p>Dates run and times:</p>
 
-	  <li>
-        {{dateFormatter this}}
-      </li>
-      <li>{{this}}</li>
-    {{else}}
-      <li>No runs reported</li>
-    {{/each}}
-    </ul>
+   {{#runTimeTable this.timesRun this.datesRun}} {{/runTimeTable}}
 
     <P>Add new date run</P>
 
     <form action="/addRun" method="POST">
       <input name="dateRun" type="datetime-local" required>
-      <input name="_id" type="hidden" value="{{this._id}}">
-      <input name="name" type="hidden" value="{{this.name}}">
+      Date: <input name="_id" type="hidden" value="{{this._id}}">
+      Run Time: <input name="timeRun" type="Number" required>
+      
+	  <input name="name" type="hidden" value="{{this.name}}">
       <input name="add" type="submit" value="Add new date">
     </form>
 
@@ -76,5 +63,3 @@
     <p>No run records in the database</p>
   {{/each}}
 </div>
-
-

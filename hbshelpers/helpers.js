@@ -7,6 +7,7 @@ function dateFormat(date) {
 
 var helpers = {
   dateFormatter : dateFormat
+  //RunTimeTable : ";
 };
 
 module.exports = helpers;
