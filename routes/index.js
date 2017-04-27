@@ -79,7 +79,7 @@ router.post('/deleteLake', function(req, res, next){
 	});//end of call to delete bird
 
 
-router.post('/addDateRun', function(req, res, next){
+router.post('/addRun', function(req, res, next){
 
   if (!req.body.dateRun) {
     req.flash('error', 'Please provide a date for your run of ' + req.body.name);
@@ -100,17 +100,45 @@ router.post('/addDateRun', function(req, res, next){
 
     console.log('run saved = ' + req.body.dateRun);
 
-    lake.datesRun.push(req.body.dateRun);  // Add new date to datesRun array
+	
+	var t = req.body.timeRun;
+var d = req.body.date;
+var foundPlace=false;
+	for (var i=0; i<lake.datesRun.length; i++)
+{
+//if new time is less than this iteration's time
+if (t < lake.timesRun[i])
+{
+lake.timesRun.splice(i,0, t)
+lake.datesRun.splice(i, 0, d)
+foundPlace=true;
+break;
+}//end of if time greater than time[i]	
+else{
+lake.timesRun.splice(i+1,0, t)
+lake.datesRun.splice(i+1, 0, d)
+foundPlace=true;
+break;
+	
+}//end of else
 
+	
+	if (foundPlace == false){
+	lake.datesRun.push(req.body.dateRun);  // Add new date to datesRun array
+lake.timesRun.push(req.body.timeRun);  // Add new date to datesRun array
+	}
+	}//end of loop
+    
+	
     console.log(lake.datesRun)
-
+/*
     // And sort datesRun
     lake.datesRun.sort(function(a, b) {
       if (a.getTime() < b.getTime()) { return 1;  }
       if (a.getTime() > b.getTime()) { return -1; }
       return 0;
     });
-
+*/
 
     lake.save(function(err){
       if (err) {
