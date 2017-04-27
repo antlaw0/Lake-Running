@@ -42,25 +42,9 @@
     <p>Name: {{this.name}}</p>
     <p>Description: {{this.description}}</p>
 
-    <p>Dates run:</p>
+    <p>Dates run and times:</p>
 
-
-
-
-	<ul>
-
-	{{#each this.timesRun}} {{/each}}
-  <p>this</p>   <!-- you probably want something else here -->
- {{#each this.datesRun}}
-
-	  <li>
-        {{dateFormatter this}}
-      </li>
-      <li>{{this}}</li>
-    {{else}}
-      <li>No runs reported</li>
-    {{/each}}
-    </ul>
+   {{#runTimeTable this.timesRun this.datesRun}} {{/runTimeTable}}
 
     <P>Add new date run</P>
 
