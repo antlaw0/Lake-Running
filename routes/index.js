@@ -102,7 +102,7 @@ router.post('/addRun', function(req, res, next){
 
 	
 	var t = req.body.timeRun;
-var d = req.body.date;
+var d = req.body.dateRun;
 var foundPlace=false;
 	for (var i=0; i<lake.datesRun.length; i++)
 {
@@ -114,23 +114,16 @@ lake.datesRun.splice(i, 0, d)
 foundPlace=true;
 break;
 }//end of if time greater than time[i]	
-else{
-lake.timesRun.splice(i+1,0, t)
-lake.datesRun.splice(i+1, 0, d)
-foundPlace=true;
-break;
-	
-}//end of else
 
 	
 	if (foundPlace == false){
-	lake.datesRun.push(req.body.dateRun);  // Add new date to datesRun array
-lake.timesRun.push(req.body.timeRun);  // Add new date to datesRun array
+	lake.datesRun.push(d);  // Add new date to datesRun array
+lake.timesRun.push(t);  // Add new date to datesRun array
 	}
 	}//end of loop
     
 	
-    console.log(lake.datesRun)
+    console.log("Times \n"+lake.timesRun+" \n"+lake.datesRun)
 /*
     // And sort datesRun
     lake.datesRun.sort(function(a, b) {
