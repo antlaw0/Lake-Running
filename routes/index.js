@@ -116,12 +116,12 @@ break;
 }//end of if time greater than time[i]	
 
 	
-	if (foundPlace == false){
+	}//end of loop
+    if (foundPlace == false){
 	lake.datesRun.push(d);  // Add new date to datesRun array
 lake.timesRun.push(t);  // Add new date to datesRun array
 	}
-	}//end of loop
-    
+	
 	
     console.log("Times \n"+lake.timesRun+" \n"+lake.datesRun)
 /*
